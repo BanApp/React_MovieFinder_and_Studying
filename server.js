@@ -2,39 +2,34 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 4800;
+const fs = require('fs');
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
+const data = fs.readFileSync('./database.json');
+const conf = JSON.parse(data);
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+    host: conf.host,
+    user: conf.user,
+    password: conf.password,
+    port: conf.port,
+    database: conf.database
+});
+
+connection.connect();
+
+
 app.get('/api/movies',(req, res) =>{
-    res.send([
-        {
-            'id': 1,
-            'image': 'https://placeimg.com/64/64/1',
-            'name': '스파이더맨',
-            'day': '20211221',
-            'genre': '액션',
-            'age': '12세 관람가'
-        },
-
-        {
-            'id': 2,
-            'image': 'https://placeimg.com/64/64/2',
-            'name': '어벤져스',
-            'day': '20120514',
-            'genre': '액션',
-            'age': '15세 관람가'
-        },
-
-        {
-            'id': 3,
-            'image': 'https://placeimg.com/64/64/3',
-            'name': '데드풀',
-            'day': '20170216',
-            'genre': '액션',
-            'age': '18세 관람가'
+    connection.query(
+        "SELECT * FROM MOVIE",
+        (err,rows,fields) => {
+            res.send(rows);
         }
-    ]);
+    );
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
