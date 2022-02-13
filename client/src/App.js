@@ -29,10 +29,25 @@ const styles = theme =>({
 
 class App extends Component{
 
-    state = {
-        movies: "",
-        completed: 0
+    constructor(props) {
+        super(props);
+        this.state ={
+            movies: '',
+            complted: 0
+        }
     }
+
+    stateRefresh = () => {
+        this.setState({
+            movies: '',
+            completed: 0
+
+        });
+        this.callApi()
+            .then(res => this.setState({movies: res}))
+            .catch(err => console.log(err));
+    }
+
 
     componentDidMount() {
         this.timer = setInterval(this.progress, 20);
@@ -66,11 +81,12 @@ class App extends Component{
                         <TableCell>개봉일</TableCell>
                         <TableCell>장르</TableCell>
                         <TableCell>관람 연령</TableCell>
+                        <TableCell>설정</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {this.state.movies ? this.state.movies.map(c => {
-                        return(<Movie key = {c.id} id = {c.id} image ={c.image} name = {c.name} day = {c.day} genre = {c.genre} age = {c.age}/>);
+                        return(<Movie stateRefresh={this.stateRefresh} key = {c.id} id = {c.id} image ={c.image} name = {c.name} day = {c.day} genre = {c.genre} age = {c.age}/>);
                     }) :
                     <TableRow>
                         <TableCell colSpan="6" align="center">
@@ -82,7 +98,7 @@ class App extends Component{
                 </TableBody>
             </Table>
         </Paper>
-            <MovieAdd/>
+            <MovieAdd stateRefresh={this.props.stateRefresh}/>
         </div>
     );
   }
