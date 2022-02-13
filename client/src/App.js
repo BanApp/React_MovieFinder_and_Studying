@@ -24,7 +24,7 @@ import IconButton from '@material-ui/core/IconButton';
 const styles = theme =>({
     root: {
         width: '100%',
-        minWidth: 1080
+        minWidth: 1080,
     },
     menu: {
         marginTop:15,
@@ -34,7 +34,7 @@ const styles = theme =>({
     },
     paper:{
         marginLeft: 18,
-        marginRight: 18
+        marginRight: 18,
     },
     progress: {
         margin: theme.spacing.unit * 2
@@ -150,15 +150,15 @@ class App extends Component{
     render() {
       const filteredComponents = (data) => {
           data = data.filter((c) => {
-              return c.name.indexOf(this.state.searchKeyword) > -1;
+              return c.keyWord.indexOf(this.state.searchKeyword) > -1;
           });
           return data.map((c) => {
               return <Movie stateRefresh={this.stateRefresh} key={c.id} id={c.id} image={c.image} name={c.name}
-                            day={c.day} genre={c.genre} age={c.age}/>
+                            day={c.day} genre={c.genre} age={c.age} keyWord={c.keyWord}/>
           });
       }
       const { classes } = this.props;
-      const cellList = ["번호","이미지","제목","개봉일","장르","관람 연령","설정"];
+      const cellList = ["번호","이미지","제목","개봉일","장르","관람 연령","키워드","설정"];
     return(
         <div className={classes.root}>
             <AppBar position="static">
@@ -203,7 +203,7 @@ class App extends Component{
                     {this.state.movies ?
                     filteredComponents(this.state.movies) :
                     <TableRow>
-                        <TableCell colSpan="6" align="center">
+                        <TableCell colSpan="7" align="center">
                             <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed}/>
                         </TableCell>
                     </TableRow>

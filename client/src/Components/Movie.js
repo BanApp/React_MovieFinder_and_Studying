@@ -13,6 +13,7 @@ class Movie extends React.Component{
             <TableCell>{this.props.day}</TableCell>
             <TableCell>{this.props.genre}</TableCell>
             <TableCell>{this.props.age}</TableCell>
+           <TableCell>{this.props.keyWord}</TableCell>
            <TableCell><MovieDelete stateRefresh={this.props.stateRefresh} id = {this.props.id}/></TableCell>
        </TableRow>
         )

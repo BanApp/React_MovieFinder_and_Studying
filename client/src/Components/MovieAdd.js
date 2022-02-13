@@ -26,6 +26,7 @@ class MovieAdd extends React.Component {
             day: '',
             genre: '',
             age: '',
+            keyWord: '',
             fileName: '',
             open: false
         }
@@ -43,6 +44,7 @@ class MovieAdd extends React.Component {
             day: '',
             genre: '',
             age: '',
+            keyWord: '',
             fileName: '',
             open: false
 
@@ -70,6 +72,7 @@ class MovieAdd extends React.Component {
         formData.append('day',this.state.day);
         formData.append('genre',this.state.genre);
         formData.append('age',this.state.age);
+        formData.append('keyWord',this.state.keyWord);
         const config  = {
             headers: {
                 'content-type': 'multipart/form-data'
@@ -91,6 +94,7 @@ class MovieAdd extends React.Component {
             day: '',
             genre: '',
             age: '',
+            keyWord: '',
             fileName: '',
             open: false
         })
@@ -118,6 +122,7 @@ class MovieAdd extends React.Component {
                         <TextField label="개봉일" type="text" name="day" value={this.state.day} onChange={this.handleValueChange}/><br/>
                         <TextField label="장르" type="text" name="genre" value={this.state.genre} onChange={this.handleValueChange}/><br/>
                         <TextField label="관람 연령" type="text" name="age" value={this.state.age} onChange={this.handleValueChange}/><br/>
+                        <TextField label="키워드" type="text" name="keyWord" value={this.state.keyWord} onChange={this.handleValueChange}/><br/>
                     </DialogContent>
                     <DialogActions>
                         <Button variant="contained" color="primary" onClick={this.handleFormSubmit}>추가</Button>

@@ -37,13 +37,14 @@ app.get('/api/movies',(req, res) =>{
 
 app.use('/image',express.static('./upload'));
 app.post('/api/movies', upload.single('image'),(req, res) => {
-    let sql = 'INSERT INTO MOVIE VALUES(null, ?, ?, ?, ?, ?, now(), 0)';
+    let sql = 'INSERT INTO MOVIE VALUES(null, ?, ?, ?, ?, ?, now(), 0,"")';
     let image = '/image/' + req.file.filename;
     let name = req.body.name;
     let day = req.body.day;
     let genre = req.body.genre;
     let age = req.body.age;
-    let params = [image, name, day, genre, age]
+    let keyWord = req.body.keyWord;
+    let params = [image, name, day, genre, age,word]
     connection.query(sql,params,
         (err, rows, fields) => {
             res.send(rows)
