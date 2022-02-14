@@ -79,7 +79,7 @@ const styles = theme =>({
     justifyContent: 'center',
   },
   inputRoot: {
-    color: 'black',
+    color: 'white',
     width: '100%',
   },
   inputInput: {
@@ -90,9 +90,9 @@ const styles = theme =>({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      width: 120,
+      width: 250,
       '&:focus': {
-        width: 200,
+        width: 300,
       },
     },
   }
@@ -105,7 +105,7 @@ class App extends Component{
         this.state ={
             movies: '',
             completed: 0,
-            searchKeyword: '' //초기화 시키면 무조건 데이터 출력
+            searchKeyword: ''  //초기화 시키면 무조건 데이터 출력
         }
         this.stateRefresh = this.stateRefresh.bind(this);
         this.handleValueChange = this.handleValueChange.bind(this)
@@ -150,7 +150,8 @@ class App extends Component{
     render() {
       const filteredComponents = (data) => {
           data = data.filter((c) => {
-              return c.keyWord.indexOf(this.state.searchKeyword) > -1;
+              return c.keyWord.indexOf(this.state.searchKeyword.split(" ")[0])>-1 && c.keyWord.indexOf(this.state.searchKeyword.split(" ")[1])> -1
+                  ||c.keyWord.indexOf(this.state.searchKeyword)>-1;//메인 화면에 항상 리스트 출력
           });
           return data.map((c) => {
               return <Movie stateRefresh={this.stateRefresh} key={c.id} id={c.id} image={c.image} name={c.name}
@@ -166,8 +167,8 @@ class App extends Component{
             <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
               <MenuIcon />
             </IconButton>
-            <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-               영화 관리 시스템
+            <Typography className={classes.title} variant="h6" color= "inherit" noWrap>
+               영화 키워드 검색
             </Typography>
             <div className={classes.grow} />
             <div className={classes.search}>
@@ -175,7 +176,7 @@ class App extends Component{
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder="검색하기"
+                placeholder="키워드를 띄어쓰기로 구분하세요"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,

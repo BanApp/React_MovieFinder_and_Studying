@@ -104,8 +104,8 @@ class MovieAdd extends React.Component {
         const {classes} = this.props;
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
-                    영화 추가하기
+                <Button variant="contained" size={"lg"} color="primary" onClick={this.handleClickOpen}>
+                    영화 추가 하기
                 </Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}>
                     <DialogTitle>영화 추가</DialogTitle>
@@ -113,7 +113,7 @@ class MovieAdd extends React.Component {
                         <input className={classes.hidden} accept="image/*" id="raised-button-file" type="file" file={this.state.file} value={this.state.fileName}
                                 onChange={this.handleFileChange}/><br/>
                         <label htmlFor="raised-button-file">
-                            <Button variant="contained" color="primary" component="span" name="file">
+                            <Button variant="contained" color="primary" component="span" name="file" >
                                 {this.state.fileName === "" ? "포스터 이미지 선택":this.state.fileName}
                             </Button>
                         </label>
