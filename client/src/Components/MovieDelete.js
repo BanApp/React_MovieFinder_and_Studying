@@ -38,20 +38,20 @@ class MovieDelete extends React.Component{
     render() {
         return (
             <div>
-            <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>삭제</Button>
+            <Button style={{fontWeight:"bold"}}variant="contained" color="secondary" onClick={this.handleClickOpen}>DELETE</Button>
         <Dialog open ={this.state.open} onClose={this.handleClose}>
-                <DialogTitle onClose ={this.handleClose}>
+                <DialogTitle style={{backgroundColor:"#333333",color:"red"}} onClose ={this.handleClose}>
                     삭제 경고
                 </DialogTitle>
-                <DialogContent>
-                    <Typography gutterBottom>
+                <DialogContent style={{backgroundColor:"#333333"}}>
+                    <Typography gutterBottom style={{backgroundColor:"#333333",fontWeight:"bold",fontSize:"large",color:"#61DBFB"}}>
                         선택한 영화 정보가 삭제 됩니다.
                     </Typography>
 
                 </DialogContent>
-                <DialogActions>
-                   <Button variant="contained" color="primary" onClick={(e) => {this.deleteMovie(this.props.id)}}>삭제</Button>
-                    <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
+                <DialogActions style={{backgroundColor:"#333333"}}>
+                   <Button style={{color:"white",fontWeight:"bold"}} variant="contained" color="secondary" onClick={(e) => {this.deleteMovie(this.props.id)}}>삭제</Button>
+                    <Button style={{color:"#61DBFB",fontWeight:"bold"}} variant="outlined" onClick={this.handleClose}>닫기</Button>
                 </DialogActions>
             </Dialog>
             </div>

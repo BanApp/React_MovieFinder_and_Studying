@@ -9,11 +9,14 @@ import TextField from "@material-ui/core/TextField";
 import {withStyles} from "@material-ui/core/styles";
 
 
+
 const styles = theme => ({
     hidden: {
         display: 'none'
-    }
+    },
 });
+
+
 
 
 class MovieAdd extends React.Component {
@@ -54,7 +57,7 @@ class MovieAdd extends React.Component {
     handleFileChange = (e) => {
         this.setState({
             file: e.target.files[0],
-            fileName: e.target.value
+            fileName: e.target.value,
         })
     }
 
@@ -104,29 +107,29 @@ class MovieAdd extends React.Component {
         const {classes} = this.props;
         return (
             <div>
-                <Button variant="contained" size={"lg"} color="primary" onClick={this.handleClickOpen}>
-                    영화 추가 하기
+                <Button style={{color:"#333333",fontWeight:"bold",backgroundColor:"#61DBFB",fontSize:"large"}} variant="contained" size={"lg"} onClick={this.handleClickOpen}>
+                    Add Movie
                 </Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}>
-                    <DialogTitle>영화 추가</DialogTitle>
-                    <DialogContent>
-                        <input className={classes.hidden} accept="image/*" id="raised-button-file" type="file" file={this.state.file} value={this.state.fileName}
+                    <DialogTitle style={{backgroundColor:"#333333",color:"#61DBFB",fontWeight:"bold",fontSize:"x-large"}}>영화 추가</DialogTitle>
+                    <DialogContent style={{backgroundColor:"#333333",color:"#61DBFB",fontWeight:"bold",fontSize:"large"}}>
+                        <input style={{color:"#61DBFB",fontWeight:"bold"}} className={classes.hidden} accept="image/*" id="raised-button-file" type="file" file={this.state.file} value={this.state.fileName}
                                 onChange={this.handleFileChange}/><br/>
-                        <label htmlFor="raised-button-file">
-                            <Button variant="contained" color="primary" component="span" name="file" >
+                        <label htmlFor="raised-button-file" >
+                            <Button style={{color:"#333333",fontWeight:"bold",backgroundColor:"#61DBFB"}} variant="outlined" color="primary" component="span" name="file" >
                                 {this.state.fileName === "" ? "포스터 이미지 선택":this.state.fileName}
                             </Button>
                         </label>
                         <br/>
-                        <TextField label="제목" type="text" name="movieName" value={this.state.movieName} onChange={this.handleValueChange}/><br/>
-                        <TextField label="개봉일" type="text" name="day" value={this.state.day} onChange={this.handleValueChange}/><br/>
-                        <TextField label="장르" type="text" name="genre" value={this.state.genre} onChange={this.handleValueChange}/><br/>
-                        <TextField label="관람 연령" type="text" name="age" value={this.state.age} onChange={this.handleValueChange}/><br/>
-                        <TextField label="키워드" type="text" name="keyWord" value={this.state.keyWord} onChange={this.handleValueChange}/><br/>
+                        <TextField InputProps={{style: { color: '#61DBFB' },}} InputLabelProps={{style: { color: '#61DBFB' },}} label="제목" type="text" name="movieName" value={this.state.movieName} onChange={this.handleValueChange}/><br/>
+                        <TextField InputProps={{style: { color: '#61DBFB' },}} InputLabelProps={{style: { color: '#61DBFB' },}} label="개봉일" type="text" name="day" value={this.state.day} onChange={this.handleValueChange}/><br/>
+                        <TextField InputProps={{style: { color: '#61DBFB' },}} InputLabelProps={{style: { color: '#61DBFB' },}} label="장르" type="text" name="genre" value={this.state.genre} onChange={this.handleValueChange}/><br/>
+                        <TextField InputProps={{style: { color: '#61DBFB' },}} InputLabelProps={{style: { color: '#61DBFB' },}} label="관람 연령" type="text" name="age" value={this.state.age} onChange={this.handleValueChange}/><br/>
+                        <TextField InputProps={{style: { color: '#61DBFB' },}} InputLabelProps={{style: { color: '#61DBFB' },}} label="키워드" type="text" name="keyWord" value={this.state.keyWord} onChange={this.handleValueChange}/><br/>
                     </DialogContent>
-                    <DialogActions>
-                        <Button variant="contained" color="primary" onClick={this.handleFormSubmit}>추가</Button>
-                        <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
+                    <DialogActions style={{backgroundColor:"#333333",color:"#61DBFB",fontWeight:"bold"}}>
+                        <Button style={{color:"#333333",fontWeight:"bold",backgroundColor:"#61DBFB"}} variant="contained" color="primary" onClick={this.handleFormSubmit}>추가</Button>
+                        <Button style={{color:"#61DBFB",fontWeight:"bold"}} variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
                     </DialogActions>
                 </Dialog>
             </div>

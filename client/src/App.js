@@ -19,10 +19,12 @@ import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
+import imgLogo from './movielogo.png'
 
 
 const styles = theme =>({
     root: {
+
         width: '100%',
         minWidth: 1080,
     },
@@ -30,11 +32,13 @@ const styles = theme =>({
         marginTop:15,
         marginBottom:15,
         display:'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+
     },
     paper:{
         marginLeft: 18,
         marginRight: 18,
+        backgroundColor: "#333333"
     },
     progress: {
         margin: theme.spacing.unit * 2
@@ -43,9 +47,11 @@ const styles = theme =>({
     flexGrow: 1,
   },
     tableHead:{
-        fontSize: '1.2rem'
+        fontSize: '1.2rem',
+        verticalAlign:"center"
     },
   menuButton: {
+        color:"#333333",
     marginLeft: -12,
     marginRight: 20,
   },
@@ -53,6 +59,7 @@ const styles = theme =>({
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
+
     },
   },
   search: {
@@ -60,7 +67,7 @@ const styles = theme =>({
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+        backgroundColor: fade(theme.palette.common.white, 0.4),
     },
     marginLeft: 0,
     width: '100%',
@@ -77,6 +84,7 @@ const styles = theme =>({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+      color:"black"
   },
   inputRoot: {
     color: 'white',
@@ -159,24 +167,24 @@ class App extends Component{
           });
       }
       const { classes } = this.props;
-      const cellList = ["번호","이미지","제목","개봉일","장르","관람 연령","키워드","설정"];
+      const cellList = ["NO.","IMG","TITLE","DATE","GENRE","FILM RATING","KEY WORD","SETTING"];
     return(
         <div className={classes.root}>
-            <AppBar position="static">
+            <AppBar style={{backgroundColor:"#61DBFB"}} position="static">
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+            <IconButton style={{color:"#333333"}}className={classes.menuButton} color="inherit" aria-label="Open drawer">
               <MenuIcon />
             </IconButton>
-            <Typography className={classes.title} variant="h6" color= "inherit" noWrap>
-               영화 키워드 검색
+            <Typography style={{color:"#333333",fontWeight:"bold",fontSize:"x-large",verticalAlign:"center"}} className={classes.title} variant="h6" color= "inherit" noWrap>
+               "IMG" Nation by MOVIFY  <img src={imgLogo} style={{verticalAlign:"center"}}/>
             </Typography>
             <div className={classes.grow} />
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
-              <InputBase
-                placeholder="키워드를 띄어쓰기로 구분하세요"
+              <InputBase style={{color:"black",fontWeight:"bold",}}
+                placeholder="Enter keywords with spaces"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
@@ -187,16 +195,16 @@ class App extends Component{
               />
             </div>
           </Toolbar>
-        </AppBar>
+        </AppBar >
             <div className={classes.menu}>
             <MovieAdd stateRefresh={this.props.stateRefresh} />
             </div>
-        <Paper className={classes.paper}>
+        <Paper className={classes.paper} >
             <Table>
                 <TableHead>
                    <TableRow>
                        {cellList.map(c => {
-                           return <TableCell className={classes.tableHead}>{c}</TableCell>
+                           return <TableCell style={{color:"#61DBFB",fontSize:"medium",fontWeight:"bold",textAlign:"center"}} className={classes.tableHead}>{c}</TableCell>
                        })}
                     </TableRow>
                 </TableHead>
@@ -204,7 +212,7 @@ class App extends Component{
                     {this.state.movies ?
                     filteredComponents(this.state.movies) :
                     <TableRow>
-                        <TableCell colSpan="7" align="center">
+                        <TableCell colSpan="7" align="center" >
                             <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed}/>
                         </TableCell>
                     </TableRow>

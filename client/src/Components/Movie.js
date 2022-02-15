@@ -7,14 +7,14 @@ class Movie extends React.Component{
     render() {
         return(
        <TableRow>
-           <TableCell>{this.props.id}</TableCell>
-           <TableCell><img src={this.props.image} alt="profile"/></TableCell>
-            <TableCell>{this.props.name}</TableCell>
-            <TableCell>{this.props.day}</TableCell>
-            <TableCell>{this.props.genre}</TableCell>
-            <TableCell>{this.props.age}</TableCell>
-           <TableCell>{this.props.keyWord}</TableCell>
-           <TableCell><MovieDelete stateRefresh={this.props.stateRefresh} id = {this.props.id}/></TableCell>
+           <TableCell style={{color:"white",fontSize:"medium",textAlign:"center"}}>{this.props.id}</TableCell>
+           <TableCell style={{color:"white",fontSize:"medium",textAlign:"center"}}><img src={this.props.image} alt="profile"/></TableCell>
+            <TableCell style={{color:"white",fontWeight:"bold",fontSize:"large",textAlign:"center"}}>{this.props.name}</TableCell>
+            <TableCell style={{color:"white",fontSize:"medium",textAlign:"center"}}>{this.props.day}</TableCell>
+            <TableCell style={{color:"white",fontSize:"medium",textAlign:"center"}}>{this.props.genre}</TableCell>
+            <TableCell style={{color:"white",fontSize:"medium",textAlign:"center"}}>{this.props.age}</TableCell>
+           <TableCell style={{color:"white",fontWeight:"bold",fontSize:"large",textAlign:"center"}}>{this.props.keyWord}</TableCell>
+           <TableCell style={{color:"white"}}><MovieDelete stateRefresh={this.props.stateRefresh} id = {this.props.id}/></TableCell>
        </TableRow>
         )
     }
