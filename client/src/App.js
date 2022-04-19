@@ -24,7 +24,6 @@ import imgLogo from './movielogo.png'
 
 const styles = theme =>({
     root: {
-
         width: '100%',
         minWidth: 1080,
     },
